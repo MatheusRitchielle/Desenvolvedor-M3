@@ -16,20 +16,17 @@ const createCard = (products) => {
   card.classList.add("card-container");//verificar se removendo essa parte a organização dos products vai ser feita
 
   card.innerHTML = `
-  <div class="card-info" 
-    style="display:flex;
-    justify-self: center;
-    flex-direction: column;
-   "
+  <div class="card-info" style="display: flex; align-items:center; flex-direction: column;"
    >
-    <img src=${products.image}>
-    <div>R$ ${products.price}<div>
-    <div>até ${products.parcelamento[0]}x de ${products.parcelamento[1]}<div>
-    <div>${products.date}</div>
+    <img src="${products.image}"/>
+    <div>R$ ${products.price}</div>
+    <div style="color: #666666">até ${products.parcelamento[0]}x de ${products.parcelamento[1]}</div>
     <button 
       onClick="saveCarShop()";
       style="background-color: black; 
       color: #fff; 
+      height: 2.3rem;
+      font-weight: bold;
       width: 100%;
       cursor: pointer"
       >
@@ -96,7 +93,7 @@ const ordenaRecentes = () => {
 }
 
 const colorFilter = () => {
-  let data = produtoGet("http://localhost:5000/products?color=Preto")
+  let data = produtoGet("http://localhost:5000/products?color=Preto")//Descobrir como passar as cores para reaproveitar o código.
   let products = JSON.parse(data)
   const card = document.querySelector("card");
   products.forEach(element => {
@@ -106,7 +103,7 @@ const colorFilter = () => {
 }
 
 const sizeFilter = () => {
-  let data = produtoGet("http://localhost:5000/products?size=M")
+  let data = produtoGet("http://localhost:5000/products?size=M ")
   let products = JSON.parse(data)
   const card = document.querySelector("card");
   products.forEach(element => {
@@ -115,4 +112,14 @@ const sizeFilter = () => {
   });
 }
 
-sizeFilter()
+const priceFilter = () => {
+  let data = produtoGet("http://localhost:5000/products?price=50")
+  let products = JSON.parse(data)
+  const card = document.querySelector("card");
+  products.forEach(element => {
+    let dados = createCard(element);
+      card.appendChild(dados)
+  });
+}
+
+main()

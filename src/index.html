@@ -18,36 +18,69 @@
     ></script>
     <title>Desenvolvedor M3</title>
   </head>
-
-  <body
-    style="
-      display: flex;
-      flex-direction: column;
+  <style>
+    body {
       margin: 0;
       font-family: Open Sans;
       font-weight: normal;
       font-size: 20px;
-    "
-  >
-    <nav
-      style="
-        display: flex;
-        justify-content: space-around;
-        padding: 1%;
-        border-bottom: solid 2px #c7c7c7;
-      "
-    >
+    }
+    nav {
+      display: flex;
+      justify-content: space-around;
+      padding: 1%;
+      border-bottom: solid 2px #c7c7c7;
+    }
+    .fa-sharp {
+      font-size: 24px;
+    }
+    .cotainer {
+      padding: 0 5% 0 5%;
+    }
+    .blusas-ordenar {
+      display: flex;
+      justify-content: space-between;
+    }
+    .filtros {
+      display: flex;
+      color: #333333;
+      flex-direction: column;
+    }
+    .inputCores {
+      display: flex;
+      flex-direction: column;
+    }
+    .card-container {
+      display: grid;
+      grid-column-start: 1;
+      grid-column-end: 3;
+      margin-left: 2.5rem;
+    }
+    .card {
+      display: flex;
+      gap: 150px;
+      flex-wrap: wrap;
+    }
+    footer {
+      display: flex;
+      background-color: black;
+      color: #fff;
+      height: 2.3rem;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 2rem;
+      bottom: 0;
+    }
+  </style>
+
+  <body>
+    <nav>
       <img src="./img/logo-m3.png" alt="Logo m3" />
-      <i class="fa-sharp fa-solid fa-bag-shopping" style="font-size: 24px"></i>
+      <i class="fa-sharp fa-solid fa-bag-shopping"></i>
     </nav>
-    <div
-      class="cotainer"
-      style="display: flex; flex-direction: column; padding: 0 5% 0 5%"
-    >
-      <div
-        class="blusas-ordenar"
-        style="display: flex; justify-content: space-between"
-      >
+    <div class="cotainer">
+      <div class="blusas-ordenar">
         <a style="font-size: 32px; color: #333333">Blusas</a>
         <div class="ordenar">
           <select name="OrdenarPor" id="OrdenarPor">
@@ -58,50 +91,38 @@
           </select>
         </div>
       </div>
-      <div style="display: flex; flex-direction: row">
-        <div
-          class="filtros"
-          style="
-            display: flex;
-            color: #333333;
-
-            flex-direction: column;
-          "
-        >
-          <h5>CORES</h5>
+      <div style="display: flex">
+        <div class="filtros">
+          <form>
+            <legend>CORES</legend>
+            <div class="inputCores">
+              <input type="radio" id="corAmarelo" name="cor" value="amarelo" />
+              <label for="corAmarelo">Amarelo</label>
+              <input type="radio" id="corAzul" name="cor" value="azul" />
+              <label for="corAzul">Azul</label>
+              <input type="radio" id="corBranco" name="cor" value="branco" />
+              <label for="corBranco">Branco</label>
+              <input type="radio" id="corCinza" name="cor" value="cinza" />
+              <label for="corCinza">Cinza</label>
+              <input type="radio" id="corLaranja" name="cor" value="laranja" />
+              <label for="corLaranja">Laranja</label>
+              <input type="radio" id="corPreto" name="cor" value="preto" />
+              <label for="corPreto">Preto</label>
+              <input type="radio" id="corRosa" name="cor" value="rosa" />
+              <label for="corRosa">Rosa</label>
+            </div>
+          </form>
           <h5>TAMANHO</h5>
           <h5>FAIXA DE PREÇO</h5>
         </div>
 
-        <div
-          class="card-container"
-          style="
-            display: flex;
-            flex-direction: row;
-            padding: 0 5% 0 5%;
-            width: 1160px;
-            background-color: aqua;
-            
-          "
-        >
-          <card id="card" class="card" style="display: flex;"></card>
+        <div class="card-container">
+          <card id="card" class="card" />
         </div>
       </div>
-      <!-- Fim do cointainer-->
     </div>
-    <footer
-      style="
-        display: flex;
-        background-color: black;
-        color: #fff;
-        height: 2.3rem;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-      "
-    >
-      M3: IMPLANTAÇÃO DE E-COMMERCE VTEX
-    </footer>
     <script src="bundle.js"></script>
+
+    <footer>M3: IMPLANTAÇÃO DE E-COMMERCE VTEX</footer>
   </body>
 </html>
