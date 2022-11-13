@@ -21,6 +21,8 @@
 
   <body
     style="
+      display: flex;
+      flex-direction: column;
       margin: 0;
       font-family: Open Sans;
       font-weight: normal;
@@ -72,10 +74,17 @@
         </div>
 
         <div
-          class="cards"
-          style="display: grid; grid-column: 3; flex-direction: row; padding: 0 5% 0 5%"
+          class="card-container"
+          style="
+            display: flex;
+            flex-direction: row;
+            padding: 0 5% 0 5%;
+            width: 1160px;
+            background-color: aqua;
+            
+          "
         >
-          <card id="card" class="card" style="display: flex"></card>
+          <card id="card" class="card" style="display: flex;"></card>
         </div>
       </div>
       <!-- Fim do cointainer-->
