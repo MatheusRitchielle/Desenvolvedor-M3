@@ -1,10 +1,4 @@
-const serverurl = process.env.SERVER_API;
-
-console.log("Dev m3", serverurl);
-
-const titulos = ["maisRecentes", "menorPreco", "maiorPreco"];
-
-function produtoGet(url) {
+const produtoGet = (url) => {
   let request = new XMLHttpRequest()
   request.open("GET", url, false)
   request.send();
@@ -19,8 +13,8 @@ const createCard = (products) => {
   <div class="card-info" style="display: flex; align-items:center; flex-direction: column;"
    >
     <img src="${products.image}"/>
-    <div>R$ ${products.price}</div>
-    <div style="color: #666666">até ${products.parcelamento[0]}x de ${products.parcelamento[1]}</div>
+    <div style="font-weight: bold;">R$ ${products.price}</div>
+    <div style="color: #666666">até ${products.parcelamento[0]}x de R$ ${products.parcelamento[1]}</div>
     <button 
       onClick="saveCarShop()";
       style="background-color: black; 
@@ -53,7 +47,7 @@ const sortCard = () => {
 }
 
 const main = () => {
-  let data = produtoGet("http://localhost:5000/products/")
+  let data = produtoGet(`http://localhost:5000/products`)
   let products = JSON.parse(data)
   const card = document.querySelector("card");
   products.forEach(element => {
@@ -62,8 +56,27 @@ const main = () => {
   });
 }
 
-const ordenaMaiorPreco = () => {
-  let data = produtoGet("http://localhost:5000/products/?_sort=price&_order=desc")
+const filter = (filtroOrdenacao, maiorMenor, filtroCor, filtroTamanho) => {
+  var filtroOrdenacao = "date"
+  var maiorMenor = "desc"
+  var filtroCor = "Rosa"
+  var filtroTamanho = "GG"
+
+  if (filtroOrdenacao === "date") {
+    ordenaPor = "date"
+    descAsc = "desc"
+  }
+  else if (filtroOrdenacao === "price") {
+    ordenaPor = "price"
+    if (maiorMenor === "asc") {
+      descAsc = "asc"
+    } else {
+      descAsc = "desc"
+    }
+  }
+
+
+  let data = produtoGet(`http://localhost:5000/products/?_sort=${ordenaPor}&_order=${descAsc}&color=${filtroCor}&size=${filtroTamanho}`)
   let products = JSON.parse(data)
   const card = document.querySelector("card");
   products.forEach(element => {
@@ -72,54 +85,4 @@ const ordenaMaiorPreco = () => {
   });
 }
 
-const ordenaMenorPreco = () => {
-  let data = produtoGet("http://localhost:5000/products/?_sort=price&_order=asc")
-  let products = JSON.parse(data)
-  const card = document.querySelector("card");
-  products.forEach(element => {
-    let dados = createCard(element);
-    card.appendChild(dados)
-  });
-}
-
-const ordenaRecentes = () => {
-  let data = produtoGet("http://localhost:5000/products/?_sort=date&_order=desc")
-  let products = JSON.parse(data)
-  const card = document.querySelector("card");
-  products.forEach(element => {
-    let dados = createCard(element);
-    card.appendChild(dados)
-  });
-}
-
-const colorFilter = () => {
-  let data = produtoGet("http://localhost:5000/products?color=Preto")//Descobrir como passar as cores para reaproveitar o código.
-  let products = JSON.parse(data)
-  const card = document.querySelector("card");
-  products.forEach(element => {
-    let dados = createCard(element);
-      card.appendChild(dados)
-  });
-}
-
-const sizeFilter = () => {
-  let data = produtoGet("http://localhost:5000/products?size=M ")
-  let products = JSON.parse(data)
-  const card = document.querySelector("card");
-  products.forEach(element => {
-    let dados = createCard(element);
-      card.appendChild(dados)
-  });
-}
-
-const priceFilter = () => {
-  let data = produtoGet("http://localhost:5000/products?price=50")
-  let products = JSON.parse(data)
-  const card = document.querySelector("card");
-  products.forEach(element => {
-    let dados = createCard(element);
-      card.appendChild(dados)
-  });
-}
-
-main()
+filter()

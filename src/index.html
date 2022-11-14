@@ -9,8 +9,11 @@
       rel="stylesheet"
       type="text/css"
     />
+    
+    <link rel="stylesheet" href="scss/main.scss">
     <link rel="stylesheet" href="./css/style.css" />
     <link rel="stylesheet" href="./css/card.css" />
+    <script src="js/index.js"></script>
 
     <script
       src="https://kit.fontawesome.com/ceac0d91b3.js"
@@ -18,7 +21,7 @@
     ></script>
     <title>Desenvolvedor M3</title>
   </head>
-  <style>
+  <style type="text/css" media="screen">
     body {
       margin: 0;
       font-family: Open Sans;
@@ -41,6 +44,10 @@
       display: flex;
       justify-content: space-between;
     }
+    .blusas-ordenar a {
+      font-size: 32px;
+      color: #333333;
+    }
     .filtros {
       display: flex;
       color: #333333;
@@ -61,6 +68,10 @@
       gap: 150px;
       flex-wrap: wrap;
     }
+    .input-label {
+      display: flex;
+      flex-direction: row;
+    }
     footer {
       display: flex;
       background-color: black;
@@ -73,7 +84,6 @@
       bottom: 0;
     }
   </style>
-
   <body>
     <nav>
       <img src="./img/logo-m3.png" alt="Logo m3" />
@@ -81,7 +91,7 @@
     </nav>
     <div class="cotainer">
       <div class="blusas-ordenar">
-        <a style="font-size: 32px; color: #333333">Blusas</a>
+        <a>Blusas</a>
         <div class="ordenar">
           <select name="OrdenarPor" id="OrdenarPor">
             <option value="" disabled selected>Ordenar por:</option>
@@ -94,35 +104,50 @@
       <div style="display: flex">
         <div class="filtros">
           <form>
+            <section class="section-color">
             <legend>CORES</legend>
-            <div class="inputCores">
-              <input type="radio" id="corAmarelo" name="cor" value="amarelo" />
-              <label for="corAmarelo">Amarelo</label>
-              <input type="radio" id="corAzul" name="cor" value="azul" />
-              <label for="corAzul">Azul</label>
-              <input type="radio" id="corBranco" name="cor" value="branco" />
-              <label for="corBranco">Branco</label>
-              <input type="radio" id="corCinza" name="cor" value="cinza" />
-              <label for="corCinza">Cinza</label>
-              <input type="radio" id="corLaranja" name="cor" value="laranja" />
-              <label for="corLaranja">Laranja</label>
-              <input type="radio" id="corPreto" name="cor" value="preto" />
-              <label for="corPreto">Preto</label>
-              <input type="radio" id="corRosa" name="cor" value="rosa" />
-              <label for="corRosa">Rosa</label>
-            </div>
+              <div class="styled-input-container styled-input--square">
+                <div class="radio-input-label">
+                  <input type="radio" id="corAmarelo" name="cor"value="amarelo"/>
+                  <label for="corAmarelo">Amarelo</label>
+                </div>
+                <div class="radio-input-label">
+                  <input type="radio" id="corAzul" name="cor" value="azul" />
+                  <label for="corAzul">Azul</label>
+                </div>
+                <div class="radio-input-label">
+                  <input type="radio" id="corBranco" name="cor" value="branco"/>
+                  <label for="corBranco">Branco</label>
+                </div>
+                <div class="radio-input-label">
+                  <input type="radio" id="corCinza" name="cor" value="cinza" />
+                  <label for="corCinza">Cinza</label>
+                </div>
+                <div class="radio-input-label">
+                  <input type="radio" id="corLaranja" name="cor" value="laranja"/>
+                  <label for="corLaranja">Laranja</label>
+                </div>
+                <div class="radio-input-label">
+                  <input type="radio" id="corPreto" name="cor" value="preto" />
+                  <label for="corPreto">Preto</label>
+                </div>
+                <div class="radio-input-label">
+                  <input type="radio" id="corRosa" name="cor" value="rosa" />
+                  <label for="corRosa">Rosa</label>
+                </div>
+              </div>
+            </section>
           </form>
           <h5>TAMANHO</h5>
+
           <h5>FAIXA DE PREÇO</h5>
         </div>
-
         <div class="card-container">
           <card id="card" class="card" />
         </div>
       </div>
     </div>
     <script src="bundle.js"></script>
-
-    <footer>M3: IMPLANTAÇÃO DE E-COMMERCE VTEX</footer>
   </body>
+  <footer>M3: IMPLANTAÇÃO DE E-COMMERCE VTEX</footer>
 </html>
