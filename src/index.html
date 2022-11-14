@@ -9,16 +9,22 @@
       rel="stylesheet"
       type="text/css"
     />
-    
-    <link rel="stylesheet" href="scss/main.scss">
-    <link rel="stylesheet" href="./css/style.css" />
-    <link rel="stylesheet" href="./css/card.css" />
-    <script src="js/index.js"></script>
 
     <script
       src="https://kit.fontawesome.com/ceac0d91b3.js"
       crossorigin="anonymous"
     ></script>
+
+    <script src=".js/index.js"></script>
+
+    <!-- Tudo o que está entre os comentários são testes e devem ser removidos -->
+    <script src="../src/js/index.js"></script>
+    <!--  Tudo o que está entre os comentários são testes e devem ser removidos -->
+
+    <link rel="stylesheet" href="scss/main.scss" />
+    <link rel="stylesheet" href="./css/style.css" />
+    <link rel="stylesheet" href="./css/card.css" />
+
     <title>Desenvolvedor M3</title>
   </head>
   <style type="text/css" media="screen">
@@ -28,50 +34,138 @@
       font-weight: normal;
       font-size: 20px;
     }
+
     nav {
       display: flex;
       justify-content: space-around;
       padding: 1%;
       border-bottom: solid 2px #c7c7c7;
     }
+
     .fa-sharp {
       font-size: 24px;
     }
+
     .cotainer {
-      padding: 0 5% 0 5%;
+      padding: 2% 5% 0 2%;
     }
+
     .blusas-ordenar {
       display: flex;
       justify-content: space-between;
     }
+
     .blusas-ordenar a {
       font-size: 32px;
       color: #333333;
     }
+
     .filtros {
       display: flex;
       color: #333333;
       flex-direction: column;
+      font-size: 15px;
+      width: 60rem;
     }
-    .inputCores {
+
+
+    .tamanho {
       display: flex;
       flex-direction: column;
     }
+
+
+    .seleciona-tamanho {
+      justify-content: space-between;
+    }
+
+    .seleciona-tamanho input[type="radio"] {
+      opacity: 0;
+      position: fixed;
+      width: 0;
+    }
+
+    .seleciona-tamanho label {
+      cursor: pointer;
+      display: inline-block;
+      width: 25px;
+      height: 25px;
+      margin: 2px;
+      border: 2px solid rgba(0, 0, 0, 0.5);
+    
+    }
+
+    .seleciona-tamanho input[type="radio"]:focus + label {
+      border: 2px solid rgba(0, 0, 0, 0.5);
+   
+
+    }
+
+    .seleciona-tamanho input[type="radio"]:checked + label {
+      border-color: #00C0EE;
+      font-weight: bold;
+    }
+
+
+
+
+    .radio-input-label {
+      display: flex;
+      flex-direction: row;
+    }
+
+    .radio-input-label label {
+      margin-left: 5%;
+    }
+
+    .lista-tamanhos {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      width: 9.5rem;
+    }
+
+    .tamanho div {
+      display: flex;
+      grid-column-end: 3;
+    }
+
+    .styled-input-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    button {
+      display: flex;
+      color: #fff;
+      font-weight: bold;
+      background-color: #121212;
+      justify-content: center;
+      width: 4rem;
+      height: 1.5rem;
+      align-items: center;
+      margin-top: 4%;
+      cursor: pointer;
+    }
+
     .card-container {
       display: grid;
       grid-column-start: 1;
       grid-column-end: 3;
       margin-left: 2.5rem;
     }
+
     .card {
       display: flex;
       gap: 150px;
       flex-wrap: wrap;
     }
+
     .input-label {
       display: flex;
       flex-direction: row;
     }
+
     footer {
       display: flex;
       background-color: black;
@@ -83,17 +177,174 @@
       margin-top: 2rem;
       bottom: 0;
     }
+
+    @media screen and (max-width: 500px) {
+      a {
+        display: flex;
+        justify-content: center;
+      }
+      .ordenar {
+        border: solid 1px #333333;
+      }
+      .filtros {
+        border: solid 1px #333333;
+      }
+      .card-container {
+        margin-top: 50%;
+      }
+    }
   </style>
   <body>
+    <!-- <script type="text/javascript" src="js/index.js"></script> -->
     <nav>
       <img src="./img/logo-m3.png" alt="Logo m3" />
       <i class="fa-sharp fa-solid fa-bag-shopping"></i>
     </nav>
     <div class="cotainer">
-      <div class="blusas-ordenar">
-        <a>Blusas</a>
+      <a>Blusas</a>
+      <div style="display: flex">
+        <div class="filtros">
+          <div class="cor">
+            <h5>CORES</h5>
+            <div class="styled-input-container styled-input--square">
+              <div class="radio-input-label">
+                <input
+                  type="radio"
+                  id="corAmarelo"
+                  name="cor"
+                  value="amarelo"
+                />
+                <label for="corAmarelo">Amarelo</label>
+              </div>
+              <div class="show-more"></div>
+              <div class="radio-input-label">
+                <input type="radio" id="corAzul" name="cor" value="azul" />
+                <label for="corAzul">Azul</label>
+              </div>
+              <div class="show-more"></div>
+              <div class="radio-input-label">
+                <input type="radio" id="corBranco" name="cor" value="branco" />
+                <label for="corBranco">Branco</label>
+              </div>
+              <div class="show-more"></div>
+              <div class="radio-input-label">
+                <input type="radio" id="corCinza" name="cor" value="cinza" />
+                <label for="corCinza">Cinza</label>
+              </div>
+              <div class="show-more"></div>
+              <div class="radio-input-label">
+                <input
+                  type="radio"
+                  id="corLaranja"
+                  name="cor"
+                  value="laranja"
+                />
+                <label for="corLaranja">Laranja</label>
+              </div>
+              <div class="show-more"></div>
+              <div class="radio-input-label">
+                <input type="radio" id="corPreto" name="cor" value="preto" />
+                <label for="corPreto">Preto</label>
+              </div>
+              <div class="show-more"></div>
+              <div class="radio-input-label">
+                <input type="radio" id="corRosa" name="cor" value="rosa" />
+                <label for="corRosa">Rosa</label>
+              </div>
+              <button class="ver-cores" id="ver-cores" onClick="teste()">
+                Filtrar
+              </button>
+            </div>
+          </div>
+          <div class="tamanho">
+            <h5>TAMANHO</h5>
+            <div class="lista-tamanhos">
+              <div class="seleciona-tamanho">
+                <input type="radio" id="P" name="tamanho" value="P" />
+                <label for="P">P</label>
+              </div>
+              <div class="seleciona-tamanho">
+                <input type="radio" id="M" name="tamanho" value="M" />
+                <label for="M">M</label>
+              </div>
+              <div class="seleciona-tamanho">
+                <input type="radio" id="G" name="tamanho" value="G" />
+                <label for="G">G</label>
+              </div>
+              <div class="seleciona-tamanho">
+                <input type="radio" id="GG" name="tamanho" value="GG" />
+                <label for="GG">GG</label>
+              </div>
+              <div class="seleciona-tamanho">
+                <input type="radio" id="U" name="tamanho" value="U" />
+                <label for="U">U</label>
+              </div>
+              <div class="seleciona-tamanho">
+                <input type="radio" id="36" name="tamanho" value="36" />
+                <label for="36">36</label>
+              </div>
+              <div class="seleciona-tamanho">
+                <input type="radio" id="38" name="tamanho" value="38" />
+                <label for="38">38</label>
+              </div>
+              <div class="seleciona-tamanho">
+                <input type="radio" id="40" name="tamanho" value="40" />
+                <label for="40">40</label>
+              </div>
+              <div class="seleciona-tamanho">
+                <input type="radio" id="036" name="tamanho" value="36" />
+                <label for="036">36</label>
+              </div>
+              <div class="seleciona-tamanho">
+                <input type="radio" id="038" name="tamanho" value="38" />
+                <label for="038">38</label>
+              </div>
+              <div class="seleciona-tamanho">
+                <input type="radio" id="040" name="tamanho" value="40" />
+                <label for="040">40</label>
+              </div>
+            </div>
+            <button class="ver-cores" id="ver-cores" onClick="teste()">
+              Filtrar
+            </button>
+          </div>
+          <div class="faixa-preco">
+            <h5>FAIXA DE PREÇO</h5>
+            <div class="radio-input-label">
+              <input type="radio" id="0-50" name="valores" value="0-50" />
+              <label for="0-50">de R$0 até R$50</label>
+            </div>
+            <div class="radio-input-label">
+              <input type="radio" id="51-150" name="valores" value="51-150" />
+              <label for="51-150">de R$51 até R$150</label>
+            </div>
+            <div class="radio-input-label">
+              <input type="radio" id="151-300" name="valores" value="151-300" />
+              <label for="151-300">de R$151 até R$300</label>
+            </div>
+            <div class="radio-input-label">
+              <input type="radio" id="301-500" name="valores" value="301-500" />
+              <label for="301-500">de R$301 até R$500</label>
+            </div>
+            <div class="radio-input-label">
+              <input
+                type="radio"
+                id="mais-de-500"
+                name="valores"
+                value="mais-de-500"
+              />
+              <label for="mais-de-500">a partir de R$500</label>
+            </div>
+            <button class="ver-cores" id="ver-cores" onClick="teste()">
+              Filtrar
+            </button>
+          </div>
+        </div>
+        <div class="card-container" id="card-container">
+          <card id="card" class="card"></card>
+        </div>
         <div class="ordenar">
-          <select name="OrdenarPor" id="OrdenarPor">
+          <select name="ordenar-por" id="ordenar-por">
             <option value="" disabled selected>Ordenar por:</option>
             <option value="maisRecentes">Mais Recentes</option>
             <option value="menorPreco">Menor Preço</option>
@@ -101,53 +352,10 @@
           </select>
         </div>
       </div>
-      <div style="display: flex">
-        <div class="filtros">
-          <form>
-            <section class="section-color">
-            <legend>CORES</legend>
-              <div class="styled-input-container styled-input--square">
-                <div class="radio-input-label">
-                  <input type="radio" id="corAmarelo" name="cor"value="amarelo"/>
-                  <label for="corAmarelo">Amarelo</label>
-                </div>
-                <div class="radio-input-label">
-                  <input type="radio" id="corAzul" name="cor" value="azul" />
-                  <label for="corAzul">Azul</label>
-                </div>
-                <div class="radio-input-label">
-                  <input type="radio" id="corBranco" name="cor" value="branco"/>
-                  <label for="corBranco">Branco</label>
-                </div>
-                <div class="radio-input-label">
-                  <input type="radio" id="corCinza" name="cor" value="cinza" />
-                  <label for="corCinza">Cinza</label>
-                </div>
-                <div class="radio-input-label">
-                  <input type="radio" id="corLaranja" name="cor" value="laranja"/>
-                  <label for="corLaranja">Laranja</label>
-                </div>
-                <div class="radio-input-label">
-                  <input type="radio" id="corPreto" name="cor" value="preto" />
-                  <label for="corPreto">Preto</label>
-                </div>
-                <div class="radio-input-label">
-                  <input type="radio" id="corRosa" name="cor" value="rosa" />
-                  <label for="corRosa">Rosa</label>
-                </div>
-              </div>
-            </section>
-          </form>
-          <h5>TAMANHO</h5>
-
-          <h5>FAIXA DE PREÇO</h5>
-        </div>
-        <div class="card-container">
-          <card id="card" class="card" />
-        </div>
-      </div>
     </div>
+    <script src="js/index.js"></script>
     <script src="bundle.js"></script>
   </body>
+
   <footer>M3: IMPLANTAÇÃO DE E-COMMERCE VTEX</footer>
 </html>
