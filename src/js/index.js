@@ -1,5 +1,7 @@
 "use strict";
 
+let link = "http://localhost:5000/products/";
+
 const serverurl = process.env.SERVER_API;
 
 const listaCores = [
@@ -120,9 +122,9 @@ const listaFxPreco = [
   }
 ]
 
-
 let cor = null
 let tamanho = null
+let ordem = null
 let fxPreco = [50, 150]
 
 let select = document.querySelector("#ordenar-por");
@@ -147,7 +149,6 @@ const criaCard = (products) => {
     <div>R$ ${products.price.toFixed(2)}</div>
     <div style="color: #666666">até ${products.parcelamento[0]}x de R$ ${products.parcelamento[1].toFixed(2)}</div>
     <button 
-      onClick="teste()";
       style="background-color: black; 
       color: #fff; 
       height: 2.3rem;
@@ -162,61 +163,37 @@ const criaCard = (products) => {
   return card;
 }
 
-const listaCards = (ordenaPor, descAsc) => {
-  let data = produtoGet(`http://localhost:5000/products/?_sort=${ordenaPor}&_order=${descAsc}`)
+const listaCards = (color, size, price, order, sort) => {
+  console.log('chegou na função')
+  let colorFilter = color ? `&color=${color}` : '';
+  let sizeFilter = size ? `&size=${size}` : '';
+  let priceFilter = price ? `&price=${price}` : '';
+  let orderFilter = order ? `&_order=${order}` : '';
+  let sortFilter = sort ? `?_sort=${sort}` : '';
+  let data = produtoGet(`http://localhost:5000/products/${sortFilter}${colorFilter}${sizeFilter}${priceFilter}${orderFilter}`);
   let products = JSON.parse(data)
   const card = document.querySelector("card");
+  document.querySelector("card").replaceChildren();
   products.forEach(element => {
     let dados = criaCard(element);
     card.appendChild(dados)
   });
 }
 
-function main(cor) {
-  let filtroCor = cor
-  let filtroTamanho = null
-  let filtroFxPreco = null
-
-  if (cor != null) {
-    filtroCor = "&color=" + cor;
-  }
-  else {
-    filtroCor = "";
-  }
-  if (tamanho != null) {
-    filtroTamanho = "&size=" + tamanho;
-  }
-  else {
-    filtroTamanho = "";
-  }
-  // if(fxPreco =! null){
-  //   filtroFxPreco = fxPreco;
-  // }
-  // else{
-  //   filtroFxPreco = "";
-  // }
-
+function main() {
   switch (value) {
     case "maisRecentes":
-      returnvv
+      return
     case "menorPreco":
-      return listaCards("price", `asc&${filtroCor}${filtroTamanho}`);
+      ordem = 'asc';
+      return listaCards(cor, tamanho, '', ordem, 'price');
     case "maiorPreco":
-      return listaCards("price", `desc&${filtroCor}${filtroTamanho}`);
+      ordem = 'desc';
+      return listaCards(cor, tamanho, '', ordem, 'price');
     default:
-      return listaCards("id", `asc&${filtroCor}${filtroTamanho}`);
+      return listaCards(cor, tamanho, '', 'desc', 'id');
   }
-
 }
-
-const filtros = (dados) => {
-  console.log(dados)
-}
-
-function teste(){
-  alert("deu certo")
-}
-
 const filtroCores = () => {
   listaCores.forEach(element => {
     var input = document.createElement("input")
@@ -224,18 +201,18 @@ const filtroCores = () => {
 
     input.type = "checkbox"
     input.value = `${element.name}`
-    input.name = `${element.name}`
-    input.addEventListener("click", (event) => {
-      filtros(element.name)
-    })
+    input.name = "filtro-cor"
+    
     div.innerText = `${element.name}`
 
     document.getElementById("filtro-cores").appendChild(input);
     document.getElementById("filtro-cores").appendChild(div);
+    input.addEventListener("click", (event) => {
+      cor = element.name
+    listaCards(cor, tamanho, '', ordem, 'id');
+    })
   })
-}
 
-const filtroTamanhos = () => {
   listaTamanhos.forEach(element => {
     var input = document.createElement("input")
     var div = document.createElement("div")
@@ -245,7 +222,8 @@ const filtroTamanhos = () => {
     input.name = `${element.name}`
     input.id = `${element.id}`
     input.addEventListener("click", (event) => {
-      filtros(element.name)
+      tamanho = element.name
+      listaCards(cor, tamanho, '', ordem, 'id')
     })
     div.innerText = `${element.name}`
 
@@ -264,7 +242,7 @@ const filtroPreco = () => {
     input.name = `${element.value}`
     input.id = `${element.value}`
     input.addEventListener("click", (event) => {
-      filtros(element.name)
+      filtros(element.name);
     })
     div.innerText = `${element.name}`
 
@@ -276,5 +254,4 @@ const filtroPreco = () => {
 main()
 filtroCores()
 filtroTamanhos()
-// filtroPreco()
 filtros()
