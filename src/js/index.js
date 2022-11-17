@@ -1,7 +1,5 @@
 "use strict";
 
-let link = "http://localhost:5000/products/";
-
 const serverurl = process.env.SERVER_API;
 
 const listaCores = [
@@ -125,7 +123,6 @@ const listaFxPreco = [
 let cor = null
 let tamanho = null
 let ordem = null
-let fxPreco = [50, 150]
 
 let select = document.querySelector("#ordenar-por");
 const value = select.options[select.selectedIndex].value;
@@ -164,7 +161,6 @@ const criaCard = (products) => {
 }
 
 const listaCards = (color, size, price, order, sort) => {
-  console.log('chegou na função')
   let colorFilter = color ? `&color=${color}` : '';
   let sizeFilter = size ? `&size=${size}` : '';
   let priceFilter = price ? `&price=${price}` : '';
@@ -194,7 +190,8 @@ function main() {
       return listaCards(cor, tamanho, '', 'desc', 'id');
   }
 }
-const filtroCores = () => {
+
+const filtros = () => {
   listaCores.forEach(element => {
     var input = document.createElement("input")
     var div = document.createElement("div")
@@ -202,14 +199,14 @@ const filtroCores = () => {
     input.type = "checkbox"
     input.value = `${element.name}`
     input.name = "filtro-cor"
-    
+
     div.innerText = `${element.name}`
 
     document.getElementById("filtro-cores").appendChild(input);
     document.getElementById("filtro-cores").appendChild(div);
     input.addEventListener("click", (event) => {
       cor = element.name
-    listaCards(cor, tamanho, '', ordem, 'id');
+      listaCards(cor, tamanho, '', ordem, 'id');
     })
   })
 
@@ -232,26 +229,5 @@ const filtroCores = () => {
   })
 }
 
-const filtroPreco = () => {
-  listaFxPreco.forEach(element => {
-    var input = document.createElement("input")
-    var div = document.createElement("div")
-
-    input.type = "radio"
-    input.value = `${element.value}`
-    input.name = `${element.value}`
-    input.id = `${element.value}`
-    input.addEventListener("click", (event) => {
-      filtros(element.name);
-    })
-    div.innerText = `${element.name}`
-
-    document.getElementById("filtro-precos").appendChild(input);
-    document.getElementById("filtro-precos").appendChild(div);
-  })
-}
-
 main()
-filtroCores()
-filtroTamanhos()
 filtros()
